@@ -1,0 +1,11 @@
+{
+  "linearTeamName": "ACME Skunkworks",
+  "issueKeys": [
+    "A"
+  ],
+  "mainBranch": "main",
+  "protectedBranches": [
+    "main"
+  ],
+  "linearWritebackDefault": "no"
+}

@@ -1,20 +1,20 @@
 {
-  "name": "@acme-skunkworks/npm-package-template",
+  "name": "@acme-skunkworks/commitlint-config",
   "version": "0.0.0",
-  "description": "Template repository for Acme Skunkworks npm packages — rename and fill src/ when generating a new package.",
+  "description": "Shared commitlint configuration for ACME Skunkworks packages.",
   "keywords": [
-    "template",
-    "npm-package",
-    "typescript",
-    "boilerplate"
+    "commitlint",
+    "conventional-commits",
+    "config",
+    "acme-skunkworks"
   ],
-  "homepage": "https://github.com/acme-skunkworks/npm-package-template#readme",
+  "homepage": "https://github.com/acme-skunkworks/commitlint-config#readme",
   "bugs": {
-    "url": "https://github.com/acme-skunkworks/npm-package-template/issues"
+    "url": "https://github.com/acme-skunkworks/commitlint-config/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/acme-skunkworks/npm-package-template.git"
+    "url": "https://github.com/acme-skunkworks/commitlint-config.git"
   },
   "license": "MIT",
   "author": {
