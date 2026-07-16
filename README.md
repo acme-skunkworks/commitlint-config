@@ -22,11 +22,13 @@ pnpm add -D @acme-skunkworks/commitlint-config @commitlint/cli
 Point your commitlint config at this package:
 
 ```js
-// commitlint.config.js
+// commitlint.config.mjs
 export default {
   extends: ["@acme-skunkworks/commitlint-config"],
 };
 ```
+
+The example uses `.mjs` so the `export default` works regardless of the consuming project's module type. In an ESM project (`"type": "module"`) a plain `commitlint.config.js` works too; in a CommonJS project use `.mjs` (as above) or `module.exports` in a `.js`/`.cjs` file.
 
 Then validate a commit-message range — exactly what the CI workflow and the pre-push hook do:
 
@@ -63,9 +65,9 @@ Everything else is inherited from `@commitlint/config-conventional` unchanged, i
 
 ## Versioning: float on latest
 
-Consumers **float** on this package's latest published version rather than pinning it — mirroring how the estate consumes its shared GitHub workflows (`@v1`). A ruleset change therefore rolls out estate-wide on each consumer's next install, with no per-repo bump PR.
+The gate is designed to track this config's **latest published version** rather than pinning it, mirroring how the estate floats on its shared GitHub workflows (`@v1`). The reusable CI workflow installs the config fresh on each run, so a caret range with no committed lockfile resolves to the latest published version — a ruleset change reaches the gate on its next run, with no per-repo bump PR.
 
-The trade-off is deliberate: because a change here takes effect everywhere on next install, ruleset edits must be made carefully. The package is Dependabot-versioned like the estate's other shared packages, so consumers that do want a lockfile record still get update PRs.
+Where a consumer instead commits a lockfile (for example the local pre-push hook running in a repo that pins its dev-dependencies), the resolved version stays put until it is updated: the package is Dependabot-versioned like the estate's other shared packages, so those consumers get update PRs. The trade-off is deliberate — because a ruleset change reaches the floating consumers immediately, edits must be made carefully.
 
 ## Development
 
