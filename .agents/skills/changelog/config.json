@@ -1,0 +1,10 @@
+{
+  "issueKeys": [
+    "A"
+  ],
+  "linearWorkspaceSlug": "acme-skunkworks",
+  "baseBranch": "main",
+  "changelogDir": "changelog",
+  "fallbackPackage": "infrastructure",
+  "affectedPackages": false
+}
