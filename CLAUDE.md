@@ -122,8 +122,8 @@ type-checking and type-aware linting. Three tsconfigs keep those concerns separa
   fail with "file not found by the project service" on infra files (they aren't in the src-only
   `tsconfig.json`).
 
-`extends` does **not** inherit `include`/`exclude` — only `compilerOptions` — so the two extra
-configs restate their own `include`/`exclude`.
+`extends` merges `compilerOptions`, but a child's `include`/`exclude` **replace** the base's rather
+than merging — so the two extra configs restate their own `include`/`exclude`.
 
 ## Linting and formatting
 
@@ -438,10 +438,14 @@ a hand-opened PR, set the title yourself. Non-release types (`docs:`/`chore:`/`c
 
 ```bash
 NPM_TOKEN=$(grep '^NPM_TOKEN=' .env | cut -d'=' -f2-)
-npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+# Write the token to a throwaway npmrc — never persist it in your standing ~/.npmrc:
+TMP_NPMRC=$(mktemp)
+printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_TOKEN" > "$TMP_NPMRC"
+export NPM_CONFIG_USERCONFIG="$TMP_NPMRC"
 npm whoami                     # verify
 pnpm run release:manual:dry    # simulate — verifies tarball + auth
 pnpm run release:manual        # actual publish (npm publish --access public --provenance=false)
+rm -f "$TMP_NPMRC"; unset NPM_CONFIG_USERCONFIG   # token never lands in ~/.npmrc
 ```
 
 The token must be a **Granular Access Token with "Bypass 2FA" enabled at creation time** — without
@@ -485,9 +489,18 @@ publish #2 once the manifest is seeded.
    → GitHub Actions → org, repo, workflow filename (`pkg-release.yml`), environment blank.
 5. `gh workflow enable Release`. From here on, releases go through CI.
 
-**Fallback (recovery-code `--otp`):** for headless / no-browser contexts, or an account without a
+**Fallback (recovery-code OTP):** for headless / no-browser contexts, or an account without a
 passkey. Generate single-use recovery codes at npmjs.com → Profile → Two-Factor Authentication →
-Manage Recovery Codes, then `npm publish --access public --provenance=false --otp=<recovery-code>`.
+Manage Recovery Codes. Pass the code through the environment rather than on the command line (a
+`--otp=<code>` argument leaks via shell history and `ps`):
+
+```bash
+read -rs NPM_CONFIG_OTP        # paste a recovery code — it won't echo
+export NPM_CONFIG_OTP
+npm publish --access public --provenance=false
+unset NPM_CONFIG_OTP
+```
+
 Regenerate your recovery codes immediately after — the used one is burnt.
 
 Things that look like solutions but aren't: toggling "Require 2FA for write actions" off; disabling
