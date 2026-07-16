@@ -66,11 +66,12 @@ describe("@acme-skunkworks/commitlint-config", () => {
     expect(errors.map((error) => error.name)).toContain("subject-empty");
   });
 
-  it("ignores merge, revert and fixup commits via defaultIgnores", async () => {
+  it("ignores merge, revert, fixup and squash commits via defaultIgnores", async () => {
     for (const message of [
       "Merge branch 'main' into feature",
       'Revert "feat: something"',
       "fixup! feat: something",
+      "squash! feat: something",
     ]) {
       const { valid } = await lintMessage(message);
       expect(valid).toBe(true);
