@@ -1,20 +1,22 @@
 ---
-title: "Remove stale merge_strategy from the changelog frontmatter schema docs"
+title: Remove stale merge_strategy from the changelog frontmatter schema docs
 release_note:
-created_at: "2026-07-13T16:04:32Z"
+created_at: '2026-07-13T16:04:32Z'
 merged_at:
-branch: "a-950-docs-remove-stale-merge_strategy-from-changelog-frontmatter"
+branch: a-950-docs-remove-stale-merge_strategy-from-changelog-frontmatter
 pr:
 commit:
-author: "rob@acmeskunkworks.io"
+author: rob@acmeskunkworks.io
 co_authors: []
 category: docs
 breaking: false
-issues: ["A-950"]
+issues:
+  - A-950
 stats:
   files_changed:
   loc_added:
   loc_removed:
+version: 0.0.0
 ---
 
 ## Changed

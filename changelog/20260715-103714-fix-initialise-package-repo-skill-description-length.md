@@ -1,8 +1,8 @@
 ---
 title: Trim the initialise-package-repo skill description under the 1024-byte limit
 release_note: Shorten the initialise-package-repo skill description so skill-aware editors no longer warn about its length.
-version:
-created_at: "2026-07-15T10:37:14Z"
+version: 0.0.0
+created_at: '2026-07-15T10:37:14Z'
 merged_at:
 branch: fix-initialise-package-repo-skill-description
 pr:
