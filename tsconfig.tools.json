@@ -13,6 +13,7 @@
     "eslint.config.ts",
     "infrastructure/scripts/**/*.ts",
     "infrastructure/tests/**/*.ts",
+    "src/**/*.test.ts",
     "vitest.config.ts"
   ]
 }

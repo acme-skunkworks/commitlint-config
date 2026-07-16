@@ -1,8 +1,49 @@
+/* eslint-disable canonical/filename-match-exported --
+   commitlint resolves a shareable config from its module's *default* export, so
+   the entry must stay `src/index.ts`; its filename cannot match the exported
+   identifier. Mirrors how `@acme-skunkworks/eslint-config` disables this rule. */
+import type { UserConfig } from "@commitlint/types";
+
 /**
- * Placeholder entry point for the package template.
+ * `@acme-skunkworks/commitlint-config` — the estate's shared commitlint ruleset.
  *
- * Everything under `src/` belongs to the generated package — replace this file
- * with the package's real public API. The surrounding shell (build, lint,
- * release workflows) does not need to change when you do.
+ * It single-sources the allowed Conventional-Commit types into one published
+ * package so that both consumers of the commit gate — the reusable CI workflow
+ * (`reusable-validate-commits.yml`) and the local husky `pre-push` range check —
+ * float on the *same* list with zero drift (A-823 / A-979).
+ *
+ * The config extends `@commitlint/config-conventional` and deliberately retains
+ * all of its defaults (header max length, non-empty type/subject, and the
+ * `defaultIgnores` for `Merge …` / `Revert …` / `fixup!` / `squash!` messages).
+ * Only `type-enum` is overridden.
+ *
+ * `type-enum` is set *explicitly* — even though the list currently mirrors
+ * config-conventional's own default — so that an upstream change to
+ * config-conventional's default type set can never silently move the estate's
+ * gate. The list is aligned to the release-please bump rules: `feat` → minor;
+ * `fix`/`perf`/`revert` → patch; the remaining types cut no release.
  */
-export const PACKAGE_NAME = "@acme-skunkworks/npm-package-template";
+const config: UserConfig = {
+  extends: ["@commitlint/config-conventional"],
+  rules: {
+    "type-enum": [
+      2, // error
+      "always",
+      [
+        "feat",
+        "fix",
+        "perf",
+        "revert",
+        "chore",
+        "docs",
+        "ci",
+        "build",
+        "refactor",
+        "test",
+        "style",
+      ],
+    ],
+  },
+};
+
+export default config;
