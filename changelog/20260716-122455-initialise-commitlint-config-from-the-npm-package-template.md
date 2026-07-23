@@ -2,20 +2,20 @@
 title: "Initialise commitlint-config from the npm package template"
 release_note:
 created_at: "2026-07-16T12:24:55Z"
-merged_at:
+merged_at: "2026-07-16T13:15:15Z"
 branch: "a-985-initialise-commitlint-config-repo-from-the-npm-package"
-pr:
-commit:
+pr: 3
+commit: "d74a5e7"
 author: "rob@acmeskunkworks.io"
 co_authors: []
 category: chore
 breaking: false
 issues: ["A-985"]
 stats:
-  files_changed:
-  loc_added:
-  loc_removed:
-  commits:
+  files_changed: 75
+  loc_added: 1146
+  loc_removed: 832
+  commits: 4
 ---
 
 ## Changed
