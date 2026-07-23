@@ -23,7 +23,7 @@ stats:
 - Backfilled the post-merge metadata (`merged_at`, `pr`, `commit`, `stats`) on the
   four dated changelog entries for PRs #3, #4, #6 and #8. Those entries predate the
   release pipeline being enabled ([A-988](https://linear.app/acme-skunkworks/issue/A-988)),
-  so the post-merge enricher never ran and the fields were left blank — this restores
+  so the post-merge enricher never ran, and the fields were left blank — this restores
   the backlog to a complete record. Values were filled from each merged PR's own facts
   via the changelog skill's enrichment logic; `version` is intentionally left unstamped
   (it is owned by release-please and filled at release time), and each entry's original
