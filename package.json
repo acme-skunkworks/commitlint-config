@@ -1,6 +1,6 @@
 {
   "name": "@acme-skunkworks/commitlint-config",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shared commitlint configuration for ACME Skunkworks packages.",
   "keywords": [
     "commitlint",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/acme-skunkworks/commitlint-config.git"
+    "url": "git+https://github.com/acme-skunkworks/commitlint-config.git"
   },
   "license": "MIT",
   "author": {
