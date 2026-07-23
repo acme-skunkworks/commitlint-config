@@ -178,10 +178,11 @@ in this file.
   (`chore(main): release <version>`) bypass. It also runs `pnpm lint:workflows` + `pnpm lint:yaml`
   as a last-line gate before CI, then a best-effort `commitlint --from origin/main --to HEAD`
   range check (A-982) — skips with an installation hint if `@commitlint/cli` isn't available
-  locally or if `dist/index.js` is missing (this repo's config extends the built artefact; run
-  `pnpm build` after clone/clean); CI's `reusable-validate-commits` gate is still the
-  authority. This repo dogfoods via `commitlint.config.mjs` extending `./dist/index.js`
-  (consumers use the published package name).
+  locally, if `dist/index.js` is missing (this repo's config extends the built artefact; run
+  `pnpm build` after clone/clean), or if `origin/main` is not a resolvable ref; CI's
+  `reusable-validate-commits` gate is still the authority. This repo dogfoods via
+  `commitlint.config.mjs` extending `./dist/index.js` (consumers use the published package
+  name).
 
 Hooks are dormant in CI: `ci.yml` and the reusable release workflow (called by `pkg-release.yml`)
 set `HUSKY=0` so the `prepare` script no-ops during `pnpm install`.
