@@ -1,20 +1,21 @@
 ---
-title: "Add commitlint pre-push range check"
+title: Add commitlint pre-push range check
 release_note:
-created_at: "2026-07-23T13:43:36Z"
-merged_at:
-branch: "a-982-add-commitlint-pre-push-range-check-to-husky-estate-fan-out"
-pr:
-commit:
-author: "rob@acmeskunkworks.io"
+created_at: '2026-07-23T13:43:36Z'
+merged_at: '2026-07-23T14:14:26Z'
+branch: a-982-add-commitlint-pre-push-range-check-to-husky-estate-fan-out
+pr: 10
+commit: 522d01e
+author: rob@acmeskunkworks.io
 co_authors: []
 category: chore
 breaking: false
-issues: ["A-982"]
+issues:
+  - A-982
 stats:
-  files_changed:
-  loc_added:
-  loc_removed:
+  files_changed: 6
+  loc_added: 191
+  loc_removed: 4
   commits:
 ---
 
