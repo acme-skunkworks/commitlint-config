@@ -152,9 +152,9 @@ newline/`=` injection; A-330).
 
 | Key                         | Value / purpose                                                                                                           |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `defaultBranch`             | `main` — keep in sync with static `on:` triggers (GitHub cannot derive `on.push.branches` from this file).                 |
+| `defaultBranch`             | `main` — keep in sync with static `on:` triggers (GitHub cannot derive `on.push.branches` from this file).                |
 | `nodeVersionFile`           | `.nvmrc` — passed to `actions/setup-node` `node-version-file`.                                                            |
-| `npmRegistryUrl`            | `https://registry.npmjs.org` — public npm registry (`setup-node` when talking to npmjs).                                   |
+| `npmRegistryUrl`            | `https://registry.npmjs.org` — public npm registry (`setup-node` when talking to npmjs).                                  |
 | `npmScope`                  | `@acme-skunkworks` — package scope; equals the owning GitHub org so `setup-node` scopes `.npmrc` for the GH Packages leg. |
 | `githubPackagesRegistryUrl` | `https://npm.pkg.github.com` — GitHub Packages npm registry (the secondary publish target).                               |
 
@@ -176,7 +176,13 @@ in this file.
 - **`pre-push`** — blocks direct pushes to `main`; humans should use `/send-it` to open a PR. Bot
   users (`github-actions[bot]`, `road-runner-bot[bot]`) and the release-please release commit
   (`chore(main): release <version>`) bypass. It also runs `pnpm lint:workflows` + `pnpm lint:yaml`
-  as a last-line gate before CI.
+  as a last-line gate before CI, then a best-effort `commitlint --from origin/main --to HEAD`
+  range check (A-982) — skips with an installation hint if `@commitlint/cli` isn't available
+  locally, if `dist/index.js` is missing (this repo's config extends the built artefact; run
+  `pnpm build` after clone/clean), or if `origin/main` is not a resolvable ref; CI's
+  `reusable-validate-commits` gate is still the authority. This repo dogfoods via
+  `commitlint.config.mjs` extending `./dist/index.js` (consumers use the published package
+  name).
 
 Hooks are dormant in CI: `ci.yml` and the reusable release workflow (called by `pkg-release.yml`)
 set `HUSKY=0` so the `prepare` script no-ops during `pnpm install`.
@@ -215,7 +221,7 @@ workflows in `acme-skunkworks/shared-workflows` (floating on `@v1`).
   validation in one job (`lint / Lint`). `eslint-args` passes **directory paths** (`src`), not globs
   — the Layer-1 action word-splits `eslint $ESLINT_ARGS` with `globstar` off, so a `**` glob would
   mis-expand; a directory lets ESLint's flat config resolve the file set recursively. `changelog-
-  script: validate:changelog` (the reusable default is `changelog:validate`). The yaml lane uses
+script: validate:changelog` (the reusable default is `changelog:validate`). The yaml lane uses
   shared-workflows' centralised `.yamllint.yml` (A-438), so the repo's local `.yamllint.yml` now only
   feeds the pre-commit hook.
 - **`build-test`** → `reusable-build-test.yml` runs build (verification) + Vitest + ShellCheck + bats
