@@ -74,7 +74,7 @@ Everything else is inherited from `@commitlint/config-conventional` unchanged, i
 | release-please                  | `chore: release main`                             |
 | `reusable-changelog-enrich.yml` | `chore(changelog): enrich post-merge metadata`    |
 
-Dependabot's subjects come from a `commit-message` template in each repo's `.github/dependabot.yml`, which sets `prefix` (plus `prefix-development` for the npm ecosystem) and `include: scope`. Without that template Dependabot emits a bare `Bump …` subject, which is **not** Conventional and would fail the gate — so the template is a prerequisite for making the gate a required check, not an optional nicety ([A-980](https://linear.app/acme-skunkworks/issue/A-980)).
+Dependabot's subjects come from a `commit-message` template in each repo's `.github/dependabot.yml`, which sets `prefix` (plus `prefix-development` for the npm ecosystem) and `include: scope`. Without that template Dependabot falls back to inferring a prefix from recent commit history — which may yield a Conventional subject, but is not guaranteed to, and can leave a bare `Bump …` that would fail the gate. The explicit template is what makes the output deterministic, which is why it is a prerequisite for making the gate a required check rather than an optional nicety ([A-980](https://linear.app/acme-skunkworks/issue/A-980)).
 
 Two inherited rules are worth knowing when reading a bot commit:
 
