@@ -22,6 +22,12 @@ patch; the rest → no release). See A-823 / A-979 for the rationale. Consumers 
 their own `commitlint.config` at it (see the [README](README.md#usage) for the consumer-facing
 usage and [allowed types](README.md#allowed-commit-types)).
 
+Bots are validated like everyone else — there is **no identity denylist**, and none should be added.
+Every automated producer (Dependabot, release-please, `reusable-changelog-enrich.yml`) already emits
+a Conventional subject; Dependabot's comes from the `commit-message` template in each repo's
+`.github/dependabot.yml`, which this repo also carries. See A-980 and
+[README](README.md#bot-authored-commits) before adding any `ignores` entry.
+
 This repo was spawned from `npm-package-template` (A-985) and inherits its build/lint/test/release
 shell; the sections below describe that shell as it actually applies to **this package**.
 

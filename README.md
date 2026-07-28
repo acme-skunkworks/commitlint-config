@@ -63,6 +63,26 @@ Everything else is inherited from `@commitlint/config-conventional` unchanged, i
 - the header max-length limit, and
 - `defaultIgnores` — merge (`Merge …`), revert (`Revert …`), `fixup!` and `squash!` messages are skipped automatically, so this config never needs to blanket-ignore them by author identity.
 
+## Bot-authored commits
+
+**There is no identity denylist.** Bots are validated exactly like everyone else — the config has no `ignores` entry, and none should be added. Every automated commit producer in the estate already emits a Conventional subject, verified against this ruleset:
+
+| Producer                        | Subject                                           |
+| ------------------------------- | ------------------------------------------------- |
+| Dependabot (github-actions)     | `ci(deps): bump the actions group with 3 updates` |
+| Dependabot (npm)                | `chore(deps): …` / `chore(deps-dev): …`           |
+| release-please                  | `chore: release main`                             |
+| `reusable-changelog-enrich.yml` | `chore(changelog): enrich post-merge metadata`    |
+
+Dependabot's subjects come from a `commit-message` template in each repo's `.github/dependabot.yml`, which sets `prefix` (plus `prefix-development` for the npm ecosystem) and `include: scope`. Without that template Dependabot emits a bare `Bump …` subject, which is **not** Conventional and would fail the gate — so the template is a prerequisite for making the gate a required check, not an optional nicety ([A-980](https://linear.app/acme-skunkworks/issue/A-980)).
+
+Two inherited rules are worth knowing when reading a bot commit:
+
+- **`header-max-length` (100) is the one real ceiling.** This is why Dependabot bumps are grouped — a grouped subject stays short (`bump the actions group with 3 updates`), whereas an ungrouped multi-package subject can run past 100 characters and fail.
+- **`body-max-line-length` (100) ignores unbreakable lines.** Dependabot bodies contain compare URLs well over 100 characters; those pass, because the rule only trips on over-long lines that could have been wrapped. A long prose line still fails.
+
+Should a bot ever need an exception, prefer fixing its commit template. A per-identity `ignores` entry is a documented last resort, not a first move.
+
 ## Versioning: float on latest
 
 The gate is designed to track this config's **latest published version** rather than pinning it, mirroring how the estate floats on its shared GitHub workflows (`@v1`). The reusable CI workflow installs the config fresh on each run, so a caret range with no committed lockfile resolves to the latest published version — a ruleset change reaches the gate on its next run, with no per-repo bump PR.
@@ -79,7 +99,7 @@ pnpm tsc     # type-check
 pnpm lint    # eslint
 ```
 
-The ruleset itself is `src/index.ts`; `src/index.test.ts` exercises the *effective* config by resolving `extends` through `@commitlint/load` and linting sample messages with `@commitlint/lint`.
+The ruleset itself is `src/index.ts`; `src/index.test.ts` exercises the _effective_ config by resolving `extends` through `@commitlint/load` and linting sample messages with `@commitlint/lint`.
 
 ## Licence
 
