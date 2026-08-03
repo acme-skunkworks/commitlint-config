@@ -365,14 +365,15 @@ Once the package exists on npm AND its Trusted Publisher is configured against t
 `pkg-release.yml`, every release flows through CI:
 
 1. Make changes on a feature branch; `/send-it` bundles, writes the dated `changelog/<slug>.md`
-   entry, sets a **Conventional Commits PR title** (the squash subject release-please reads), pushes,
-   opens a PR. CI runs build/lint, the conventional-PR-title lint, and the changelog-completeness
+   entry, sets a **Conventional Commits PR title** (still required by CI; no longer the sole
+   post-merge bump signal under merge commits), pushes, opens a PR. Feature PRs land as **merge
+   commits**. CI runs build/lint, the conventional-PR-title lint, and the changelog-completeness
    gate.
 2. After merge, the private **release-orchestrator** (road-runner-bot, a 15-min cron) runs
-   `release-please release-pr` — which infers the bump from the merged Conventional-Commit PR titles
-   and writes `package.json` + `.release-please-manifest.json` — and opens the
-   "`chore(main): release <version>`" release PR. On a later tick it squash-merges that PR once the
-   `GO/NO GO` check-run is green.
+   `release-please release-pr` — which ranks Conventional Commits on `main` (A-824) and writes
+   `package.json` + `.release-please-manifest.json` — and opens the
+   "`chore(main): release <version>`" release PR. On a later tick it **squash-merges** that release
+   PR once the `GO/NO GO` check-run is green (fan-out PRs also stay squash).
 3. The orchestrator's merge pushes to `main`, re-firing `pkg-release.yml`. An unprivileged `build`
    job builds + `npm pack`s the tarball once and uploads it as an artifact; the `release` job sees a
    **freshly bumped, untagged version**, downloads that exact tarball, and publishes it to npm via
@@ -434,11 +435,14 @@ drifts** (A-330), since the `GITHUB_TOKEN` is a bearer credential.
 Don't reintroduce `NPM_TOKEN` **as a CI secret** unless OIDC is verified broken. The local
 `.env`-based `NPM_TOKEN` is a different concern — laptop-driven publishes only, never CI.
 
-**Choosing the bump.** There is no changeset file. release-please infers the bump from the
-**Conventional Commits PR title** (the squash subject): `fix:` → patch, `feat:` → minor, a `!`
-breaking marker (or a `BREAKING CHANGE:` footer) → major. `/send-it` derives this automatically; for
+**Choosing the bump.** There is no changeset file. Feature PRs land as merge commits; release-please
+ranks Conventional Commits on `main` (A-824): `fix:` → patch, `feat:` → minor, a `!`
+breaking marker (or a `BREAKING CHANGE:` footer) → major. Conventional PR titles stay required (CI)
+but are no longer the sole post-merge bump signal for feature work. Commitlint / `validate-commits`
+remain the per-commit gate. `/send-it` derives a Conventional title automatically; for
 a hand-opened PR, set the title yourself. Non-release types (`docs:`/`chore:`/`ci:`/`refactor:`/
-`test:`/`build:`/`style:`/`perf:`) don't cut a release.
+`test:`/`build:`/`style:`/`perf:`) don't cut a release unless a landed commit does. The orchestrator
+squash-merges the release PR; fan-out stays squash.
 
 ### Manual publish (break-glass — CI-down only, after the package exists)
 
