@@ -1,11 +1,11 @@
 ---
 title: Rebrand prose to Rheged Studio
-release_note: ""
-created_at: "2026-08-04T20:04:36Z"
-merged_at: ""
+release_note: ''
+created_at: '2026-08-04T20:04:36Z'
+merged_at: '2026-08-04T20:07:01Z'
 branch: a-1248-commitlint-config-rebrand-prose-in-claudemd-and-readme
-pr: ""
-commit: ""
+pr: 20
+commit: 8ac6d5f
 author: rob@acmeskunkworks.io
 co_authors: []
 category: docs
@@ -13,10 +13,10 @@ breaking: false
 issues:
   - A-1248
 stats:
-  files_changed: ""
-  loc_added: ""
-  loc_removed: ""
-  commits: ""
+  files_changed: 3
+  loc_added: 26
+  loc_removed: 2
+  commits: ''
 ---
 
 ## Changed
