@@ -1,6 +1,6 @@
 # @acme-skunkworks/commitlint-config
 
-Shared [commitlint](https://commitlint.js.org) configuration for ACME Skunkworks packages.
+Shared [commitlint](https://commitlint.js.org) configuration for Rheged Studio packages.
 
 It **single-sources** the estate's allowed [Conventional Commit](https://www.conventionalcommits.org) types into one published package, consumed by both layers of the commit gate so the ruleset can never drift between them:
 

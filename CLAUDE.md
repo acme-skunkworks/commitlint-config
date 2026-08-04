@@ -38,7 +38,7 @@ issue IDs threaded through this document and the code comments (e.g. `A-823`, `A
 `A-447`, `A-639`) are the durable decision record: follow the ID to Linear for the full rationale.
 Capture new decisions as Linear issues and reference their IDs in commits, PR bodies, and comments
 rather than adding a `docs/adr/` tree. This package's work is catalogued in the **Commitlint**
-project in Linear (team **ACME Skunkworks**).
+project in Linear (team **Rheged Studio**).
 
 ## Package manager and Node
 
