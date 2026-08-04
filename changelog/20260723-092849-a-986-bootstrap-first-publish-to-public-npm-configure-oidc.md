@@ -22,7 +22,7 @@ stats:
 
 - Seeded `package.json` and `.release-please-manifest.json` at `1.0.0`, the initial
   published version for the bootstrap first publish to public npm
-  ([A-986](https://linear.app/acme-skunkworks/issue/A-986)). The `1.0.0` tarball was
+  ([A-986](https://linear.app/rheged-studio/issue/A-986)). The `1.0.0` tarball was
   published manually via the passkey/WebAuthn browser flow — npm has no
   pending-Trusted-Publisher flow and enforces interactive 2FA on the first publish of a
   new package, so publish #1 cannot go through CI. Seeding the manifest hands bump

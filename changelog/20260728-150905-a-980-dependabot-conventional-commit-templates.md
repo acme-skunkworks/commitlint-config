@@ -22,12 +22,12 @@ stats:
 ## Added
 
 - An `npm` package ecosystem in `.github/dependabot.yml`
-  ([A-980](https://linear.app/acme-skunkworks/issue/A-980)), grouped weekly so one lockfile
+  ([A-980](https://linear.app/rheged-studio/issue/A-980)), grouped weekly so one lockfile
   churn lands or reverts atomically. Its `commit-message` template sets `prefix`,
   `prefix-development` and `include: scope`, so bumps read `chore(deps): …` and
   `chore(deps-dev): …`. Setting both prefixes matters: `prefix` alone leaves
   development-dependency bumps on Dependabot's own default subject, which is not
-  Conventional and would fail the gate once it becomes a required check ([A-983](https://linear.app/acme-skunkworks/issue/A-983)).
+  Conventional and would fail the gate once it becomes a required check ([A-983](https://linear.app/rheged-studio/issue/A-983)).
 - A "Bot-authored commits" section in the README recording every automated commit
   producer and its subject, and stating that bots are validated like everyone else —
   there is **no identity denylist**, and a per-identity `ignores` entry is a documented
