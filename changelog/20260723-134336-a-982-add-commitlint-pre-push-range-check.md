@@ -22,7 +22,7 @@ stats:
 ## Added
 
 - Best-effort `commitlint --from origin/main --to HEAD` check in `.husky/pre-push`
-  ([A-982](https://linear.app/acme-skunkworks/issue/A-982)), alongside the existing yamllint/actionlint steps. Skips with an
+  ([A-982](https://linear.app/rheged-studio/issue/A-982)), alongside the existing yamllint/actionlint steps. Skips with an
   installation hint when `@commitlint/cli` is missing, when `dist/index.js` is absent
   (this repo's config extends the built artefact; run `pnpm build` after clone/clean),
   or when `origin/main` is not a resolvable ref; bypassable with `git push --no-verify`.
