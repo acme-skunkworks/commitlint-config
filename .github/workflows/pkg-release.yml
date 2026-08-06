@@ -78,7 +78,7 @@ jobs:
   # Dormant on this template while Release is disabled; generated packages
   # inherit the job when they enable Release.
   changelog-enrich:
-    uses: acme-skunkworks/shared-workflows/.github/workflows/reusable-changelog-enrich.yml@950537e9b87ebebef89222a8747331d489d17f65
+    uses: acme-skunkworks/shared-workflows/.github/workflows/reusable-changelog-enrich.yml@280b3d543d8748d20b31fd76e9ee7c60e83f027e
     with:
       mode: finalise
     permissions:
