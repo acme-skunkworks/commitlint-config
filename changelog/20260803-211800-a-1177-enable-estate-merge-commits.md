@@ -16,7 +16,8 @@ stats:
   files_changed: 15
   loc_added: 266
   loc_removed: 154
-  commits:
+  commits: 2
+version: 1.0.1
 ---
 
 ## Changed
@@ -24,4 +25,4 @@ stats:
 **Estate merge-commit cutover ([A-1177](https://linear.app/rheged-studio/issue/A-1177))**
 
 - `initialise-package-repo` Trunk payload — `allowed_merge_methods: ["merge","squash"]`
-- Re-vendor `send-it` **0.7.0** + refresh `AGENTS.md` (fan-outs paused, A-809)
+- Re-vendor `send-it` **0.7.0** + refresh `AGENTS.md` (fan-outs paused, [A-809](https://linear.app/rheged-studio/issue/A-809))

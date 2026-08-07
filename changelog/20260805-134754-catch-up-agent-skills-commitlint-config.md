@@ -1,7 +1,7 @@
 ---
 title: Catch up agent-skills shared bundles to HEAD
 release_note: ''
-version:
+version: 1.0.1
 created_at: '2026-08-05T13:47:54Z'
 merged_at: '2026-08-05T14:04:30Z'
 branch: a-1266-catch-up-agent-skills-commitlint-config
@@ -19,6 +19,7 @@ stats:
   files_changed: 75
   loc_added: 2583
   loc_removed: 1032
+  commits: 1
 ---
 
 ## Changed
@@ -26,6 +27,6 @@ stats:
 **Re-vendor shared agent-skills to source `main` ([A-1266](https://linear.app/rheged-studio/issue/A-1266))**
 
 - Wipe + re-copy shared skill bundles on `.claude` and `.agents` from `acme-skunkworks/agent-skills`
-- Restore per-skill `config.json` (A-706) and reconcile via `initialise-skills`
+- Restore per-skill `config.json` ([A-706](https://linear.app/rheged-studio/issue/A-706)) and reconcile via `initialise-skills`
 - Land `triage-pr` human-envelope / review-wait / `deferNonBlocking` and `send-it.triage` where those skills are installed
 - Preserve repo-local skills; keep Linear identity `Rheged Studio` / `rheged-studio`

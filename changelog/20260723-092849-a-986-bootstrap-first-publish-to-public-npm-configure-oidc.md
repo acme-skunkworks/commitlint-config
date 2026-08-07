@@ -1,21 +1,23 @@
 ---
-title: "Bootstrap first publish to public npm at 1.0.0"
-release_note: "First public release of @acme-skunkworks/commitlint-config on npm."
-created_at: "2026-07-23T09:28:49Z"
-merged_at: "2026-07-23T09:53:01Z"
-branch: "a-986-bootstrap-first-publish-to-public-npm-configure-oidc-trusted"
+title: Bootstrap first publish to public npm at 1.0.0
+release_note: First public release of @acme-skunkworks/commitlint-config on npm.
+created_at: '2026-07-23T09:28:49Z'
+merged_at: '2026-07-23T09:53:01Z'
+branch: a-986-bootstrap-first-publish-to-public-npm-configure-oidc-trusted
 pr: 8
-commit: "6bb3451"
-author: "rob@acmeskunkworks.io"
+commit: 6bb3451
+author: rob@acmeskunkworks.io
 co_authors: []
 category: chore
 breaking: false
-issues: ["A-986"]
+issues:
+  - A-986
 stats:
   files_changed: 3
   loc_added: 40
   loc_removed: 3
   commits: 2
+version: 1.0.1
 ---
 
 ## Changed

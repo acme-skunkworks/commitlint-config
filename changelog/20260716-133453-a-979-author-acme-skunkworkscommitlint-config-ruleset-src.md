@@ -1,21 +1,23 @@
 ---
-title: "Author @acme-skunkworks/commitlint-config ruleset"
-release_note: "Adds the shared commitlint ruleset that single-sources the estate's allowed Conventional-Commit types, extending @commitlint/config-conventional."
-created_at: "2026-07-16T13:34:53Z"
-merged_at: "2026-07-16T14:44:30Z"
-branch: "a-979-author-acme-skunkworkscommitlint-config-ruleset-src"
+title: Author @acme-skunkworks/commitlint-config ruleset
+release_note: Adds the shared commitlint ruleset that single-sources the estate's allowed Conventional-Commit types, extending @commitlint/config-conventional.
+created_at: '2026-07-16T13:34:53Z'
+merged_at: '2026-07-16T14:44:30Z'
+branch: a-979-author-acme-skunkworkscommitlint-config-ruleset-src
 pr: 4
-commit: "c860bc0"
-author: "rob@acmeskunkworks.io"
+commit: c860bc0
+author: rob@acmeskunkworks.io
 co_authors: []
 category: feature
 breaking: false
-issues: ["A-979"]
+issues:
+  - A-979
 stats:
   files_changed: 8
   loc_added: 534
   loc_removed: 220
   commits: 5
+version: 1.0.1
 ---
 
 ## Added

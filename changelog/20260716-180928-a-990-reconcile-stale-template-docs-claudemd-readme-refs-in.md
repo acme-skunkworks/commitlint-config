@@ -1,21 +1,23 @@
 ---
-title: "Reconcile stale template docs in CLAUDE.md"
+title: Reconcile stale template docs in CLAUDE.md
 release_note:
-created_at: "2026-07-16T18:09:28Z"
-merged_at: "2026-07-16T19:13:45Z"
-branch: "a-990-reconcile-stale-template-docs-claudemd-readme-refs-in"
+created_at: '2026-07-16T18:09:28Z'
+merged_at: '2026-07-16T19:13:45Z'
+branch: a-990-reconcile-stale-template-docs-claudemd-readme-refs-in
 pr: 6
-commit: "a893a05"
-author: "rob@acmeskunkworks.io"
+commit: a893a05
+author: rob@acmeskunkworks.io
 co_authors: []
 category: docs
 breaking: false
-issues: ["A-990"]
+issues:
+  - A-990
 stats:
   files_changed: 2
   loc_added: 431
   loc_removed: 256
   commits: 3
+version: 1.0.1
 ---
 
 ## Changed
