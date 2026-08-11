@@ -2,10 +2,10 @@
 title: Bump @acme-skunkworks siblings and fix markdownlint 3.x fallout
 release_note: ""
 created_at: "2026-08-07T15:12:12Z"
-merged_at:
+merged_at: "2026-08-11T13:04:01Z"
 branch: a-1344-commitlint-config-bump-acme-skunkworks-devdeps-and-fix-lint
-pr:
-commit:
+pr: 26
+commit: e76407b
 author: rob@acmeskunkworks.io
 co_authors: []
 category: chore
@@ -13,9 +13,9 @@ breaking: false
 issues:
   - A-1344
 stats:
-  files_changed:
-  loc_added:
-  loc_removed:
+  files_changed: 7
+  loc_added: 65
+  loc_removed: 22
   commits:
 version:
 ---
