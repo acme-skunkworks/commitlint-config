@@ -73,6 +73,9 @@ jobs:
         !**/dist/**
         !**/.turbo/**
         !**/.astro/**
+        !**/.claude/skills/**
+        !**/.agents/skills/**
+        !AGENTS.md
       # The template's validator script is `validate:changelog` (the reusable
       # default is `changelog:validate`) — implemented by changelog-core.
       changelog-script: validate:changelog

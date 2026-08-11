@@ -69,7 +69,7 @@ Everything else is inherited from `@commitlint/config-conventional` unchanged, i
 
 | Producer                        | Subject                                           |
 | ------------------------------- | ------------------------------------------------- |
-| Dependabot (github-actions)     | `ci(deps): bump the actions group with 3 updates` |
+| Dependabot (`github-actions`)   | `ci(deps): bump the actions group with 3 updates` |
 | Dependabot (npm)                | `chore(deps): …` / `chore(deps-dev): …`           |
 | release-please                  | `chore: release main`                             |
 | `reusable-changelog-enrich.yml` | `chore(changelog): enrich post-merge metadata`    |
