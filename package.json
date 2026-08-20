@@ -6,15 +6,15 @@
     "commitlint",
     "conventional-commits",
     "config",
-    "acme-skunkworks"
+    "rheged-studio"
   ],
-  "homepage": "https://github.com/acme-skunkworks/commitlint-config#readme",
+  "homepage": "https://github.com/rheged-studio/commitlint-config#readme",
   "bugs": {
-    "url": "https://github.com/acme-skunkworks/commitlint-config/issues"
+    "url": "https://github.com/rheged-studio/commitlint-config/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acme-skunkworks/commitlint-config.git"
+    "url": "git+https://github.com/rheged-studio/commitlint-config.git"
   },
   "license": "MIT",
   "author": {
