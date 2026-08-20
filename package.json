@@ -1,5 +1,5 @@
 {
-  "name": "@acme-skunkworks/commitlint-config",
+  "name": "@rheged-studio/commitlint-config",
   "version": "1.0.1",
   "description": "Shared commitlint configuration for ACME Skunkworks packages.",
   "keywords": [
