@@ -22,7 +22,7 @@ compatibility: >-
   scripts (Node built-ins only — no npm dependencies, no build step, no tsx).
   Wraps the `initialise-skills` skill — install it alongside this one; its
   Linear-facts step uses the Linear MCP server when present. Designed for a repo
-  spawned from acme-skunkworks/npm-package-template; the GitHub-settings values
+  spawned from rheged-studio/npm-package-template; the GitHub-settings values
   (integration_id 15368, the npm-release environment, pkg-release.yml) are specific
   to that template's release shell.
 metadata:
@@ -76,7 +76,7 @@ re-run with nothing left to do is a clean no-op.
 - **Reconcile `infrastructure/repo-config.yaml`** — `npmScope` and `defaultBranch`,
   preserving comments and quoting.
 - **Pull the shared skills** — `npx skills add` from
-  `acme-skunkworks/agent-skills` for the locked set (`changelog`, `cleanup-repo`,
+  `rheged-studio/agent-skills` for the locked set (`changelog`, `cleanup-repo`,
   `commit`, `initialise-skills`, `linear-sync`, `preflight`, `release-status`,
   `send-it`, `triage-pr`) into both Claude Code and Cursor trees
   (`--agent claude-code --agent cursor --copy`). Does **not** overwrite this
@@ -218,7 +218,7 @@ and prints exact next steps):
 
 ## Prerequisites
 
-- A repo created from `acme-skunkworks/npm-package-template`.
+- A repo created from `rheged-studio/npm-package-template`.
 - `gh` authenticated with **repo-admin** on the target repo (the environment and
   ruleset calls need admin).
 - Network access for `npx skills add` (the shared-skills pull).
