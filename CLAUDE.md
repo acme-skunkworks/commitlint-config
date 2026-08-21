@@ -156,13 +156,13 @@ Non-secret knobs shared by `ci.yml` and `pkg-release.yml` live in
 (A-779), which allowlist-validates every value before writing it to `GITHUB_OUTPUT` (guards
 newline/`=` injection; A-330).
 
-| Key                         | Value / purpose                                                                                                           |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `defaultBranch`             | `main` — keep in sync with static `on:` triggers (GitHub cannot derive `on.push.branches` from this file).                |
-| `nodeVersionFile`           | `.nvmrc` — passed to `actions/setup-node` `node-version-file`.                                                            |
-| `npmRegistryUrl`            | `https://registry.npmjs.org` — public npm registry (`setup-node` when talking to npmjs).                                  |
+| Key                         | Value / purpose                                                                                                         |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `defaultBranch`             | `main` — keep in sync with static `on:` triggers (GitHub cannot derive `on.push.branches` from this file).              |
+| `nodeVersionFile`           | `.nvmrc` — passed to `actions/setup-node` `node-version-file`.                                                          |
+| `npmRegistryUrl`            | `https://registry.npmjs.org` — public npm registry (`setup-node` when talking to npmjs).                                |
 | `npmScope`                  | `@rheged-studio` — package scope; equals the owning GitHub org so `setup-node` scopes `.npmrc` for the GH Packages leg. |
-| `githubPackagesRegistryUrl` | `https://npm.pkg.github.com` — GitHub Packages npm registry (the secondary publish target).                               |
+| `githubPackagesRegistryUrl` | `https://npm.pkg.github.com` — GitHub Packages npm registry (the secondary publish target).                             |
 
 Secrets (`GITHUB_TOKEN`), OIDC Trusted Publishing, and release-please behaviour are unchanged — not
 in this file.
@@ -369,7 +369,7 @@ Once the package exists on npm AND its Trusted Publisher is configured against t
    post-merge bump signal under merge commits), pushes, opens a PR. Feature PRs land as **merge
    commits**. CI runs build/lint, the conventional-PR-title lint, and the changelog-completeness
    gate.
-2. After merge, the private **release-orchestrator** (road-runner-bot, a 15-min cron) runs
+2. After merge, **Clacks** (road-runner-bot, a 15-min cron) runs
    `release-please release-pr` — which ranks Conventional Commits on `main` (A-824) and writes
    `package.json` + `.release-please-manifest.json` — and opens the
    "`chore(main): release <version>`" release PR. On a later tick it **squash-merges** that release
