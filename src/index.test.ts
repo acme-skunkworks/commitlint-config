@@ -36,7 +36,7 @@ function lintMessage(message: string) {
   });
 }
 
-describe("@acme-skunkworks/commitlint-config", () => {
+describe("@acme-studio/commitlint-config", () => {
   it("extends @commitlint/config-conventional", () => {
     expect(config.extends).toContain("@commitlint/config-conventional");
   });
