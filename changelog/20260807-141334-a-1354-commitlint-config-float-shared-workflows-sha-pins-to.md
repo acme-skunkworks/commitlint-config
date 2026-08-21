@@ -17,6 +17,7 @@ stats:
   loc_added: 26
   loc_removed: 2
   commits: 0
+version: 1.0.2
 ---
 
 ## Changed
