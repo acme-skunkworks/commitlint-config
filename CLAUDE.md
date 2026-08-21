@@ -10,7 +10,7 @@ repo-specific guidance follows below.
 
 ## Repo
 
-`@acme-studio/commitlint-config` — the estate's shared [commitlint](https://commitlint.js.org)
+`@rheged-studio/commitlint-config` — the estate's shared [commitlint](https://commitlint.js.org)
 ruleset. `src/index.ts` default-exports a `UserConfig` that `extends`
 `@commitlint/config-conventional` (retaining its header-length, non-empty type/subject, and
 `defaultIgnores` behaviour for `Merge …`/`Revert …`/`fixup!`/`squash!`) and overrides only
@@ -70,7 +70,7 @@ pnpm clean          # remove node_modules + dist
 
 ## Agent skills
 
-This repo adopts the shared `@acme-studio/agent-skills` bundles, installed via
+This repo adopts the shared `@rheged-studio/agent-skills` bundles, installed via
 [skills.sh](https://skills.sh) under `.claude/skills/` (mirrored to `.agents/skills/` for Cursor).
 The installed skills are:
 
@@ -135,14 +135,14 @@ than merging — so the two extra configs restate their own `include`/`exclude`.
 
 This package dogfoods the org's own shared configs:
 
-- **ESLint** — `eslint.config.ts` consumes `@acme-studio/eslint-config`, composing the `base`
+- **ESLint** — `eslint.config.ts` consumes `@rheged-studio/eslint-config`, composing the `base`
   stack plus the `typescript` overrides, then adds two local blocks: an `infrastructure/**/*.{ts,mjs}`
   override (`complexity: off` + `import/no-extraneous-dependencies` with `devDependencies: true`,
   since the shell scripts legitimately import devDeps), and the `tsconfig.eslint.json` project pin
   (see above). The config is authored in `.ts` (loaded by `jiti`, a devDependency ESLint v9.18+
   requires for TypeScript config) and wrapped in `defineConfig`, so the whole array is type-checked
   against the preset's shipped types. `pnpm tsc` type-checks it via `tsconfig.tools.json`.
-- **Markdown** — `.markdownlint-cli2.jsonc` extends `@acme-studio/markdownlint-config`.
+- **Markdown** — `.markdownlint-cli2.jsonc` extends `@rheged-studio/markdownlint-config`.
   Pre-commit auto-fixes staged `**/*.{md,mdx}` via lint-staged (`|| true`, so it never blocks); the
   `lint` reusable caller (markdown lane) enforces. (There is no root `CHANGELOG.md` to exclude —
   release-please runs with `skip-changelog`.)
@@ -161,7 +161,7 @@ newline/`=` injection; A-330).
 | `defaultBranch`             | `main` — keep in sync with static `on:` triggers (GitHub cannot derive `on.push.branches` from this file).                |
 | `nodeVersionFile`           | `.nvmrc` — passed to `actions/setup-node` `node-version-file`.                                                            |
 | `npmRegistryUrl`            | `https://registry.npmjs.org` — public npm registry (`setup-node` when talking to npmjs).                                  |
-| `npmScope`                  | `@acme-studio` — package scope; equals the owning GitHub org so `setup-node` scopes `.npmrc` for the GH Packages leg. |
+| `npmScope`                  | `@rheged-studio` — package scope; equals the owning GitHub org so `setup-node` scopes `.npmrc` for the GH Packages leg. |
 | `githubPackagesRegistryUrl` | `https://npm.pkg.github.com` — GitHub Packages npm registry (the secondary publish target).                               |
 
 Secrets (`GITHUB_TOKEN`), OIDC Trusted Publishing, and release-please behaviour are unchanged — not
@@ -221,7 +221,7 @@ and the fanned **`validate-payload`** check run as separate required workflows, 
 ## Shared reusable CI callers (A-447)
 
 The `lint` and `build-test` jobs in `ci.yml` are thin callers of the estate's shared reusable
-workflows in `acme-studio/shared-workflows` (floating on `@v1`).
+workflows in `rheged-studio/shared-workflows` (floating on `@v1`).
 
 - **`lint`** → `reusable-lint.yml` runs ESLint + markdownlint + yamllint/actionlint + dated-changelog
   validation in one job (`lint / Lint`). `eslint-args` passes **directory paths** (`src`), not globs
@@ -307,7 +307,7 @@ inlines publishing). They remain as unit-tested reference shell (still exercised
 documenting the install-and-verify and idempotent-publish patterns.
 
 Changelog validate / completeness / enrich / finalise are provided by
-`@acme-studio/changelog-core` (`pnpm validate:changelog`, `pnpm exec changelog-core
+`@rheged-studio/changelog-core` (`pnpm validate:changelog`, `pnpm exec changelog-core
 check-completeness`). Post-merge write-back is the `changelog-enrich` job in `pkg-release.yml`
 calling `reusable-changelog-enrich.yml` (A-808 / A-821).
 
@@ -501,7 +501,7 @@ publish #2 once the manifest is seeded.
    2FA/browser step, so a green dry-run doesn't by itself predict a green real publish.)
 3. `pnpm run release:manual` — npm opens your browser and prompts for a passkey/WebAuthn approval
    (Touch ID / Face ID / security key). Approve it and the scoped package publishes.
-4. Configure Trusted Publisher: `https://www.npmjs.com/package/@acme-studio/commitlint-config/access`
+4. Configure Trusted Publisher: `https://www.npmjs.com/package/@rheged-studio/commitlint-config/access`
    → GitHub Actions → org, repo, workflow filename (`pkg-release.yml`), environment blank.
 5. `gh workflow enable Release`. From here on, releases go through CI.
 

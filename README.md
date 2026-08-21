@@ -1,4 +1,4 @@
-# @acme-studio/commitlint-config
+# @rheged-studio/commitlint-config
 
 Shared [commitlint](https://commitlint.js.org) configuration for Rheged Studio packages.
 
@@ -12,7 +12,7 @@ It extends [`@commitlint/config-conventional`](https://www.npmjs.com/package/@co
 ## Install
 
 ```sh
-pnpm add -D @acme-studio/commitlint-config @commitlint/cli
+pnpm add -D @rheged-studio/commitlint-config @commitlint/cli
 ```
 
 `@commitlint/config-conventional` is a runtime dependency of this package, so installing this config pulls it in automatically — you do not need to add it yourself.
@@ -24,7 +24,7 @@ Point your commitlint config at this package:
 ```js
 // commitlint.config.mjs
 export default {
-  extends: ["@acme-studio/commitlint-config"],
+  extends: ["@rheged-studio/commitlint-config"],
 };
 ```
 

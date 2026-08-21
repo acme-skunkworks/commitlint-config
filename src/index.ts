@@ -1,11 +1,11 @@
 /* eslint-disable canonical/filename-match-exported --
    commitlint resolves a shareable config from its module's *default* export, so
    the entry must stay `src/index.ts`; its filename cannot match the exported
-   identifier. Mirrors how `@acme-studio/eslint-config` disables this rule. */
+   identifier. Mirrors how `@rheged-studio/eslint-config` disables this rule. */
 import type { UserConfig } from "@commitlint/types";
 
 /**
- * `@acme-studio/commitlint-config` — the estate's shared commitlint ruleset.
+ * `@rheged-studio/commitlint-config` — the estate's shared commitlint ruleset.
  *
  * It single-sources the allowed Conventional-Commit types into one published
  * package so that both consumers of the commit gate — the reusable CI workflow
